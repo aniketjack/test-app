@@ -1,0 +1,54 @@
+<div class="container mt-5 content-wrapper">
+    <div class="page-header">
+        <h6>Albums</h6>
+        <hr/>
+    </div>
+    <div class="row">
+       <!-- <div class="col-12"> -->
+            <div class="album-item col-sm-3" *ngFor="let album of albums | paginate: { itemsPerPage: 10, currentPage: page }; let idx = index;">
+                {{album['title']}}
+                <span class="picture-count">{{album['photoCount']}}</span>
+                <span class="see-album" (click)="extractPhotosFromAlbum(album['id'])">View Photos>></span>
+            </div>
+      <!--  </div>  -->
+    </div>
+    <div class="col-12 mt-5">
+        <pagination-controls 
+            responsive="true"
+            (pageChange)="page = $event">
+        </pagination-controls>
+    </div>
+</div>
+
+ <!-- The Modal -->
+   <div class="modal" id="myModal" role="dialog" [style.display]="showModal ? 'block' : 'none'">
+     <div class="modal-dialog modal-xl">
+       <div class="modal-content">
+       
+         <!-- Modal Header -->
+         <div class="modal-header">
+           <h4 class="modal-title">Test Modal</h4>
+           <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+         </div>
+         
+         <!-- Modal body -->
+         <div class="modal-body">
+             <div class="album-item col-sm-3" *ngFor="let photo of albumPhotos | paginate: { itemsPerPage: 8, currentPage: photoPage }; let idx = index;">
+                <img src="{{photo['thumbnailUrl']}}"/>
+            </div>
+            <div class="col-12 mt-5">
+                <pagination-controls 
+                    responsive="true"
+                    (pageChange)="photoPage = $event">
+                </pagination-controls>
+            </div>
+         </div>
+         
+         <!-- Modal footer -->
+         <div class="modal-footer">
+           <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "hide()">Close</button>
+         </div>
+         
+       </div>
+     </div>
+   </div>

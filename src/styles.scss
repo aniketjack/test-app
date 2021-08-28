@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/_varibales.scss";
+.content-wrapper{
+  margin-bottom: 80px;
+}
+.spinner-container{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgb(115 115 115 / 80%);
+    z-index: 99999;
+    opacity: 0.8;
+}
+
+
+.spinner-border {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  vertical-align: text-bottom;
+  border: 8px solid $primary-color;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border .75s linear infinite;
+  animation: spinner-border .75s linear infinite;
+}
+
+.text-warning {
+  color: $primary-color !important;
+  margin-top: 15%;
+}
+
+/* Bootstrap Ovverriding */
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus,
+.accordion-button:focus
+button {
+  box-shadow: inset 0 -1px 0 #ddd;
+  outline: 0;
+}
