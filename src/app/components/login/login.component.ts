@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api-service.service';
 import { WaitingLoaderService } from 'src/app/services/waiting-loader/waiting-loader.service';
 import * as CONST from 'src/app/shared/app.constants';
@@ -16,22 +17,30 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
-    private waitingLoader: WaitingLoaderService
+    private waitingLoader: WaitingLoaderService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-    //this.getUsers();
-  }
+  ngOnInit(): void {}
 
-  getUsers(){
-    this.waitingLoader.display(true);
-    this.apiService.get(CONST.GET_USERS).subscribe(result=>{
-      console.log("Result >>> ", JSON.stringify(result));
-      //this.waitingLoader.display(false);
-      this.waitingLoader.display(false);
-    }, err=>{
-      console.log("Error Occoured!");
-    })
+
+  /******************************************************
+   * 
+   * @param userEmail Authenticate User
+   *****************************************************/
+  authenticateUser(userEmail){
+    // capture users data from localstorage
+    let usersData = JSON.parse(window.localStorage.getItem('users'));
+    let currentValidUser = usersData.filter(user=>{
+        return user['email'] == userEmail;
+    });
+
+    let check = window.sessionStorage.setItem('loggedInUser', JSON.stringify(currentValidUser));
+    // clear users data from storage
+    console.log("Check >>>> ", check);
+
+    // Navigate user to Home page post success authetication
+    this.router.navigateByUrl('/home');
   }
 
 }

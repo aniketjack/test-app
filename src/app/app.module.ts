@@ -17,6 +17,7 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UtilityService } from './services/utilities/utility.service';
+import { FilterPipe } from './services/pipes/search.pipe';
 
 // Initialize users data before bootstrapping the app
 export function startupServiceFactory(http: HttpClient) {
@@ -40,7 +41,8 @@ export function startupServiceFactory(http: HttpClient) {
     FooterComponent,
     HomeComponent,
     AlbumsComponent,
-    TodoComponent
+    TodoComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

@@ -16,4 +16,5 @@ export const
         GET_POSTS = '/posts',
         GET_USERS = '/users',
         GET_ALBUMS = '/albums',
-        GET_PHOTOS = '/photos';
+        GET_PHOTOS = '/photos',
+        GET_TODOS = '/todos';

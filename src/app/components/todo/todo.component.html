@@ -1,3 +1,23 @@
 <div class="container mt-5 content-wrapper">
+    <div class="page-header">
+       <div class="row"> 
+            <div class="col-sm-9"><h6>TODOs</h6></div>
+            <div class="col-sm-3">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" name="toggleTodos" id="toggleTodos" (change)="showCompletedTodos($event)">
+                    <label class="custom-control-label" for="toggleTodos">Show Completed</label>
+                </div>
+            </div>
+       </div> 
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div *ngFor="let todo of todos; let idx = index;">
+                 <input type="checkbox" class="custom-control-input" name="todo_{{idx}}" id="customSwitches_{{idx}}" [checked]="todo['completed']">
+                 <div class="ml-3 d-inline-block">{{todo['title']}}</div>
+            </div>
+        </div>
+    </div>
     
 </div>

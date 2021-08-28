@@ -1,21 +1,31 @@
 <div class="container mt-5 content-wrapper">
     <div class="page-header">
-        <h6>Home</h6>
+        <div class="row"> 
+            <div class="col-sm-9"><h6>HOME</h6></div>
+            <div class="col-sm-3">
+                <div class="custom-control custom-switch">
+                    <label class="custom-control-label" for="searchPosts">Search Posts</label>
+                    <input type="text" class="searchbox" name="searchPosts" id="searchPosts" [(ngModel)]="search">
+                </div>
+            </div>
+        </div> 
         <hr/>
     </div>
     <div class="accordion" id="accordionHome">
-        <div class="accordion-item" *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: page }; let idx = index">
-            <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{idx}}" attr.aria-expanded="{{idx == 0 ? true : false}}" attr.aria-controls="collapse_{{idx}}">
-                <strong>{{post['title']}}</strong>
-            </button>
-            </h2>
-            <div id="collapse_{{idx}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionHome">
-            <div class="accordion-body">
-                {{post['body']}}
+        <ng-container *ngIf="(posts | FilterPipe:search) as postsResult">
+            <div class="accordion-item" *ngFor="let post of postsResult | paginate: { itemsPerPage: 10, currentPage: page }; let idx = index">
+                <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{idx}}" attr.aria-expanded="{{idx == 0 ? true : false}}" attr.aria-controls="collapse_{{idx}}">
+                    <strong>{{post['title']}}</strong>
+                </button>
+                </h2>
+                <div id="collapse_{{idx}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionHome">
+                <div class="accordion-body">
+                    {{post['body']}}
+                </div>
+                </div>
             </div>
-            </div>
-        </div>
+        </ng-container>    
     </div>
     <div class="col-12 mt-5">
         <pagination-controls 
