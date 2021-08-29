@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,9 @@ export class HeaderComponent implements OnInit {
   userDetails: any;
   userWebLink: string = '';
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     /*********************************************************
@@ -20,6 +23,17 @@ export class HeaderComponent implements OnInit {
      this.userWebLink = this.userDetails['website'] || '';
      console.log("Logged In User >>>> ", this.userDetails);
   }
+  
+  /*********************************************************
+   * Logout and final cleanup
+   ********************************************************/
+  doLogout(){
+      //window.localStorage.clear();
+      window.sessionStorage.clear();
+      // navigate user to login 
+      this.router.navigateByUrl('/login');
+  }
+
 
   navigateToUserWeb(web){
      window.open(web, '_blank');

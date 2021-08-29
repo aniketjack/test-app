@@ -13,7 +13,7 @@
                                 <li><a class="dropdown-item" [routerLink]="['albums']">Albums</a></li>
                                 <li><a class="dropdown-item" [routerLink]="['todo']">ToDo's</a></li>
                                 <li><hr class="dropdown-divider"/></li>
-                                <li><a class="dropdown-item">Logout</a></li>
+                                <li><a class="dropdown-item" (click)="doLogout()">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
