@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
    * Greet User!
    *******************************************************/
      this.userDetails = JSON.parse(window.sessionStorage.getItem('loggedInUser'))[0];
-     this.userWebLink = this.userDetails['website'] || '';
-     console.log("Logged In User >>>> ", this.userDetails);
+     this.userWebLink = this.userDetails['website'];
+     console.log("Logged In User >>>> ", this.userDetails['website']);
   }
   
   /*********************************************************
@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit {
 
 
   navigateToUserWeb(web){
-     window.open(web, '_blank');
+     //this.router.navigate(['external', { state: {externalLink : this.userWebLink}}])
+     window.location.replace(this.userWebLink);
   }
 
   
